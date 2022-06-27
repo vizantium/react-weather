@@ -1,0 +1,59 @@
+.mainInfo{
+  margin-top: 25px;
+  text-align: center;
+  .dayTime{
+    font-weight: 200;
+    font-size: 21px;
+  }
+  .city{
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 30px;
+  }
+  .weather {
+    margin-top: 40px;
+    font-size: 25px;
+  }
+  .weatherInfo{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    .grade {
+      font-size: 50px;
+      margin: 0 auto;
+    }
+    div {
+      div {
+        img {
+          position: relative;
+          top: 4px;
+          height: 21px;
+          padding-right: 2px;
+        }
+        padding-top: 2px;
+        font-weight: 300;
+        align-items: center;
+        .value {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .sunTemp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    img {
+      width: 19px;
+    }
+    p {
+      font-size: 15px;
+    }
+    span {
+      font-weight: bold;
+    }
+  }
+}

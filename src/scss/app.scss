@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
+@import "src/scss/Header";
+@import "src/scss/MainInfo";
+@import "src/scss/Forecast";
+
+@font-face {
+  font-family: 'Nunito';
+  src: url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap") format("truetype");
+}
+
+*{
+  font-family: 'Nunito', sans-serif;
+  color: white;
+}
+
+.main {
+  width: 520px;
+  padding: 20px 128px;
+  margin: 20px auto;
+  font-family: 'Nunito', sans-serif;
+}
+
+.mainHot {
+  background: linear-gradient(#a16207, #c2410c);
+
+}

@@ -1,0 +1,25 @@
+.block {
+  text-align: center;
+  width: 70px;
+  img {
+    width: 60px;
+    margin-top: -19px;
+    margin-bottom: -19px;
+  }
+
+  .textInfo{
+    font-size: 15px;
+    font-weight: 100;
+  }
+}
+
+.Forecast {
+  p {
+    font-weight: bold;
+  }
+  .blocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
