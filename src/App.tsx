@@ -4,6 +4,7 @@ import {MainInfo} from "./Components/MainInfo";
 import {Forecast} from "./Components/Forecast";
 
 function App() {
+
     return (
         <div className={'main mainHot'}>
             <Header/>
