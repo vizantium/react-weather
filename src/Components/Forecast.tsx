@@ -7,9 +7,7 @@ import {ForecastBlockHourly} from "./ForecastBlockHourly";
 export const Forecast:React.FC = () => {
     const { daily, hourly } = useSelector((state: StateType) => state.searchSlice.info)
     if (daily !== null ) {
-        console.log(1)
     }
-    console.log(daily[0])
     return (<div> { daily == null ? <div>l</div> :
             <div className={'Forecast'}>
                 <div>

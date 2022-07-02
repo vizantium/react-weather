@@ -13,11 +13,9 @@ export const Header:React.FC = () => {
 
 
     useEffect(  () => {
-        if (isMount) {
             dispatch(getWeather({city: 'London'}))
             dispatch(setCity('London'))
-        }
-        isMount.current = true
+
     }, [])
 
     const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +28,19 @@ export const Header:React.FC = () => {
         dispatch(setCity(city))
     }
 
-    useEffect( () => {
+    const changeToC = () =>{
 
-        dispatch(getWeather({city, typeTemp}))
-    }, [typeTemp])
+        dispatch(getWeather({city, typeTemp : 'metric'}))
+        setTypeTemp('metric')
+
+    }
+
+    const changeToF = () =>{
+
+        dispatch(getWeather({city, typeTemp : 'imperial'}))
+        setTypeTemp('imperial')
+
+    }
 
     const getWeatherByCity =  () => {
          dispatch(getWeather({city, typeTemp}))
@@ -54,9 +61,9 @@ export const Header:React.FC = () => {
                     <img src={location}/>
                 </div>
                 <div className={'grade'}>
-                    <span className={'transition'} onClick={() => setTypeTemp('metric')}>&#8451;</span>
+                    <span className={'transition'} onClick={changeToC}>&#8451;</span>
                     <span>|</span>
-                    <span className={'transition'} onClick={() => setTypeTemp('imperial')}>&#8457;</span>
+                    <span className={'transition'} onClick={changeToF}>&#8457;</span>
                 </div>
             </div>
         </div>

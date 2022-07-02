@@ -3,12 +3,16 @@ import temperature from '../assets/temperature.png'
 import humidityImg from '../assets/humidity.png'
 import wind from '../assets/wind.png'
 import sun from '../assets/sun.png'
+import down from '../assets/down.png'
+import up from '../assets/up.png'
+import sunsetIcon from '../assets/sunset.png'
+import sunriseIcon from '../assets/sunrise.png'
 import {useSelector} from "react-redux";
 import {StateType, useAppDispatch} from "../redux/redux-store";
 
 export const MainInfo: React.FC = () => {
 
-    const {
+    let {
         temp,
         feels_like,
         humidity,
@@ -18,13 +22,18 @@ export const MainInfo: React.FC = () => {
         icon,
         name,
         country,
-        newDate
+        newDate,
+        main,
+        sunrise,
+        sunset
     } = useSelector((state: StateType) => state.searchSlice.info)
     let timeNow = ['00', '00']
 
     if (newDate !==null) {
         const time = newDate[4].split(':')
         timeNow = time
+        sunrise = sunrise[4].split(':')
+        sunset = sunset[4].split(':')
     }
 
     return (
@@ -35,7 +44,7 @@ export const MainInfo: React.FC = () => {
                         time: { timeNow[0]}:{timeNow[1]}
                     </div>
                     <div className={'city'}>{name}, {country}</div>
-                    <div className={'weather'}>Clear</div>
+                    <div className={'weather'}>{main}</div>
                     <div className={'weatherInfo'}>
                         <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
                         <span className={'grade'}>{Math.round(temp)}°</span>
@@ -48,10 +57,10 @@ export const MainInfo: React.FC = () => {
                         </div>
                     </div>
                     <div className={'sunTemp'}>
-                        <img src={sun}/><p>Rise: <span>04:45 AM</span></p><p>|</p>
-                        <img src={sun}/><p>Set: <span>09:33 PM</span></p><p>|</p>
-                        <img src={sun}/><p>High: <span>{Math.round(temp_max)}°</span></p><p>|</p>
-                        <img src={sun}/><p>Low: <span>{Math.round(temp_min)}°</span></p>
+                        <img src={sunriseIcon}/><p>Rise: <span>{sunrise[0]}:{sunrise[1]}</span></p><p>|</p>
+                        <img src={sunsetIcon}/><p>Set: <span>{sunset[0]}:{sunset[1]}</span></p><p>|</p>
+                        <img src={up}/><p>High: <span>{Math.round(temp_max)}°</span></p><p>|</p>
+                        <img src={down}/><p>Low: <span>{Math.round(temp_min)}°</span></p>
                     </div>
                 </div>
             }

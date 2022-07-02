@@ -19,7 +19,14 @@ export const getWeather = createAsyncThunk('search/getWeather', async ({city, ty
     } = data.main
     const {speed} = data.wind
     const {icon, main} = data.weather[0]
-    const {sunrise, sunset, country} = data.sys
+    let {sunrise, sunset, country} = data.sys
+
+    const sunriseTime = new Date(sunrise * 1000 + (timezone * 1000) - 10800 * 1000)
+    sunrise = sunriseTime.toString().split(' ')
+
+    const sunsetTime = new Date(sunset * 1000 + (timezone * 1000) - 10800 * 1000)
+    sunset = sunsetTime.toString().split(' ')
+
     const date = new Date(dt * 1000 + (timezone * 1000) - 10800 * 1000)
     const newDate = date.toString().split(' ')
 
@@ -27,7 +34,6 @@ export const getWeather = createAsyncThunk('search/getWeather', async ({city, ty
 
     const HourData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${ typeTemp || 'metric'}&exclude=minutely&appid=a959cf55e2a7967b1585e8562824570c`)
 
-    console.log(HourData)
 
     const {daily, hourly} = HourData.data
 
@@ -51,7 +57,6 @@ export const getWeather = createAsyncThunk('search/getWeather', async ({city, ty
         hourly,
         timezone
     }
-    console.log(daily, hourly)
 
 
 
@@ -76,8 +81,8 @@ type stateType = {
         name: string,
         country: string,
         main: string,
-        sunrise: number,
-        sunset: number,
+        sunrise: Array<string>,
+        sunset: Array<string>,
         daily: Array<object>,
         hourly: Array<object>,
         timezone: number
@@ -100,8 +105,8 @@ const initialState: stateType = {
         main: null as unknown as string,
         name: null as unknown as string,
         country: null as unknown as string,
-        sunrise: null as unknown as number,
-        sunset: null as unknown as number,
+        sunrise: [],
+        sunset: [],
         daily: [],
         hourly: [],
         timezone: null as unknown as number,
